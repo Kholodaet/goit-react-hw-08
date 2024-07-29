@@ -18,12 +18,12 @@
 }
 
 .link:hover {
-  color: #61dafb; /* Колір при наведенні курсору */
+  color: #007aff; /* Колір при наведенні курсору */
 }
 
 .isActive {
   text-decoration: underline;
-  color: #61dafb; /* Колір для активного посилання */
+  color: #007aff; /* Колір для активного посилання */
 }
 .nav span {
   margin-right: 8px; /* Відступ між іконкою та текстом */

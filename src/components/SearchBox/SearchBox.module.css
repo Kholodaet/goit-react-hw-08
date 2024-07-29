@@ -23,6 +23,6 @@
 }
 
 .input:focus {
-  border-color: #007aff; /* Синій контур при фокусі */
-  outline: none; /* Видалити стандартний обведення */
+  border-color: #007aff;
+  outline: none;
 }
