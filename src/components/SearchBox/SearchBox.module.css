@@ -1,15 +1,28 @@
 .container {
-  border: 1px solid white;
-  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #213547;
   max-width: 335px;
-  padding: 10px;
-  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
 }
 
 .label {
-  color: grey;
+  color: grey; /* Сірий колір для тексту мітки */
+  font-weight: 500; /* Товщина шрифту для виділення */
 }
 
 .input {
-  width: 315px;
+  width: 100%; /* Адаптивна ширина для зручності в різних контейнерах */
+  padding: 10px; /* Внутрішні відступи для зручності введення */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Легкий контур для полів */
+  border-radius: 5px; /* Округлені кути полів */
+  background-color: #ececec; /* Dark background for items */
+  color: rgba(37, 37, 37, 0.87);
+  font-size: 1em; /* Узгоджений розмір шрифту */
+}
+
+.input:focus {
+  border-color: #61dafb; /* Синій контур при фокусі */
+  outline: none; /* Видалити стандартний обведення */
 }

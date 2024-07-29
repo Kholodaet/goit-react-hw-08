@@ -1,38 +1,78 @@
-.dialog .modal {
-  background-color: rgb(13, 54, 35);
-  border: 2px solid black;
-  border-radius: 10px;
-  min-height: 200px;
-  min-width: 500px;
+.dialog {
+  & .MuiDialog-paper {
+    background-color: #1e1e1e; /* Темний фон для модального вікна */
+    border: 2px solid #333; /* Тонкий контур для кращого контрасту */
+    border-radius: 10px;
+    min-height: 200px;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Легка тінь для сучасного вигляду */
+    color: rgba(255, 255, 255, 0.87);
+  }
+}
+
+.title {
+  color: #f1c40f; /* Золотистий колір для заголовка */
+  font-size: 2rem; /* Зменшено розмір шрифту */
+  margin-bottom: 16px;
+}
+
+.description {
+  color: #f1c40f; /* Золотистий колір для опису */
+  font-size: 1.125rem; /* Зменшено розмір шрифту */
+  margin-bottom: 20px;
+}
+
+.btnContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: cover;
+  justify-content: flex-end;
+  gap: 16px; /* Зменшено відступ між кнопками */
+  margin-top: 20px;
 }
 
-.dialog .btn {
-  color: white;
-  background-color: grey;
-  border: 1px solid white;
+.btn {
+  background-color: #333; /* Темний фон кнопок */
+  color: #fff;
+  border: 1px solid #444; /* Контур кнопок */
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.dialog .title {
-  color: wheat;
-  font-size: 36px;
+.btn:hover {
+  background-color: #444;
+  border-color: #555; /* Зміна кольору контуру при наведенні */
 }
 
-.dialog .description {
-  color: wheat;
-  font-size: 22px;
-}
+@media (prefers-color-scheme: light) {
+  .dialog {
+    & .MuiDialog-paper {
+      background-color: #ffffff; /* Світлий фон для світлої теми */
+      border: 2px solid #ccc; /* Легкий контур для світлої теми */
+    }
+  }
 
-.dialog .btnContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 80px;
-}
+  .title,
+  .description {
+    color: #333; /* Темний колір тексту для світлої теми */
+  }
 
-.dialog .MuiDialog-paper {
-  background-color: blue;
+  .btn {
+    background-color: #555;
+    border-color: #666;
+  }
+
+  .btn:hover {
+    background-color: #666;
+    border-color: #777;
+  }
 }

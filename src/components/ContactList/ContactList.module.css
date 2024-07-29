@@ -1,9 +1,17 @@
 .list {
   max-width: 1400px;
-  padding-inline-start: 0px;
+  padding-inline-start: 0;
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 20px; /* Збільшено відступ між елементами для покращення вигляду */
   flex-wrap: wrap;
+
+  background-color: #242424; /* Темний фон для списку */
+}
+
+@media (prefers-color-scheme: light) {
+  .list {
+    background-color: #ffffff; /* Світлий фон для світлої теми */
+  }
 }

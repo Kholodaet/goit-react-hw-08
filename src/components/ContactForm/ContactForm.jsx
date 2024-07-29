@@ -64,11 +64,10 @@ const ContactForm = () => {
         name: values.name,
         number: values.number,
       };
-      //?dispatch - тієї частини в operations з деструкторизацією!
       dispatch(
         changeContact({ id: selectedContact.id, updatedData: updatedContact })
       );
-      dispatch(setSelectedContact(null)); // Скидання вибраного контакту після редагування
+      dispatch(setSelectedContact(null));
     } else {
       const newContact = {
         id: nanoid(),

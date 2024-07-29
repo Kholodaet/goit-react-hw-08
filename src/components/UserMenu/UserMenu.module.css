@@ -2,18 +2,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 50px;
+  gap: 50px; /* Узгоджене відступи між елементами */
 }
 
 .btn {
-  border: 1px solid grey;
-  border-radius: 7px;
-  padding: 7px 12px;
-  background-color: #1a1a1a;
-  transition: background-color 0.4s ease;
+  border: 1px solid grey; /* Сірий контур кнопок */
+  border-radius: 7px; /* Округлені кути */
+  padding: 7px 12px; /* Відступи всередині кнопки */
+  background-color: #1a1a1a; /* Темний фон кнопок */
+  color: #fff; /* Світлий текст на кнопках */
+  font-size: 1em; /* Узгоджений розмір шрифту */
+  font-weight: 500; /* Товщина шрифту */
+  cursor: pointer; /* Курсор для кнопок */
+  transition: background-color 0.4s ease; /* Плавний перехід фону */
 }
 
 .btn:hover {
-  background-color: grey;
-  transition: background-color 0.4s ease;
+  background-color: grey; /* Зміна фону кнопки при наведенні */
+  transition: background-color 0.4s ease; /* Плавний перехід фону */
 }

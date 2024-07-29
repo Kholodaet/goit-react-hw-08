@@ -1,34 +1,90 @@
 .form {
-  border: 1px solid white;
-  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   max-width: 335px;
-  padding: 10px;
+  padding: 15px;
+  background-color: #1e1e1e;
+  color: rgba(255, 255, 255, 0.87);
+  transition: border-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.form:hover {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .label {
-  line-height: 1;
-  color: grey;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 6px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .error {
-  color: red;
-  font-size: 12px;
-  line-height: 1;
+  color: #ff4d4d;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .containerBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
 }
 
 .btn {
-  background-color: grey;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+
+@media (prefers-color-scheme: light) {
+  .form {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    color: #213547;
+  }
+
+  .label {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .error {
+    color: #ff4d4d;
+  }
+
+  .btn {
+    background-color: #555;
+  }
+
+  .btn:hover {
+    background-color: #666;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background-color: #ececec;
+  color: rgba(37, 37, 37, 0.87);
+  font-size: 1em;
 }
