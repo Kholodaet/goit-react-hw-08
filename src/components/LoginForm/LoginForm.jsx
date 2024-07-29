@@ -19,8 +19,8 @@ const LoginForm = () => {
       .required("Email is required"),
     password: Yup.string()
       .matches(
-        /^(?=.*[A-Za-z]{2})(?=.*\d{2}).{8,}$/,
-        "Password must be at least 8 characters long, with at least 2 letters and 2 digits"
+        /^(?=.*[A-Za-z]{2})(?=.*\d{2}).{4,}$/,
+        "Password must be at least 4 characters long, with at least 2 letters and 2 digits"
       )
       .required("Password is required"),
   });
