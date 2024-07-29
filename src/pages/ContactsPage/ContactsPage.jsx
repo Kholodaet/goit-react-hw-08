@@ -7,6 +7,7 @@ import ModalDeleteContact from "../../components/ModalDeleteContact/ModalDeleteC
 import { selectLoading } from "../../redux/contacts/selectors";
 import { fetchContacts } from "../../redux/contacts/operations";
 import css from "./ContactsPage.module.css";
+import Loader from "../../components/Loader/Loader";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const ContactsPage = () => {
     <div>
       <h1 className={css.title}>Your contacts</h1>
       <ContactForm />
-      <p className={css.text}>{isLoading && "Request in progress..."}</p>
+      <p className={css.text}>{isLoading && <Loader />}</p>
       <SearchBox />
       <ContactList />
       <ModalDeleteContact />
