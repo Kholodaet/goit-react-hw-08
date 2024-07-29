@@ -8,9 +8,9 @@
 .title {
   font-size: 58px;
   line-height: 1.5;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Градієнтний фон */
-  -webkit-background-clip: text; /* Кліп фон на тексті для WebKit-браузерів */
-  -webkit-text-fill-color: transparent; /* Прозорий текст для WebKit-браузерів */
-  background-clip: text; /* Кліп фон на тексті для інших браузерів */
-  text-fill-color: transparent; /* Прозорий текст для інших браузерів */
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
