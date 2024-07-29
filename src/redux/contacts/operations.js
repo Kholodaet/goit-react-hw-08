@@ -1,74 +1,61 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+axios.defaults.baseURL = "https://connections-api.goit.global";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("/contacts");
-      toast.success("fetchContacts fulfilled", {
-        icon: "Success!",
-        style: { gap: "5px" },
-      });
-
-      return response.data;
+      const { data } = await axios.get("/contacts");
+      return data;
     } catch (error) {
-      toast.error(`fetchContacts rejected: ${error.message}`);
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.data);
     }
   }
 );
 
 export const addContact = createAsyncThunk(
   "contacts/addContact",
-  async (newContact, thunkAPI) => {
+  async (contact, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/contacts", newContact);
-      toast.success("Contact is added", {
-        icon: "Success!",
-        style: { gap: "5px" },
-      });
-      return response.data;
+      const { data } = await axios.post("/contacts", contact);
+      toast.success("The contact was successfully added!");
+      return data;
     } catch (error) {
-      toast.error(`Contact is not saved: ${error.message}`);
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error("Failed to add contact. Please try again!");
+      return rejectWithValue(error);
     }
   }
 );
 
 export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
-  async (contactId, thunkAPI) => {
+  async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/contacts/${contactId}`);
-      toast.success("Contact was deleted", {
-        icon: "Success!",
-        style: { gap: "5px" },
-      });
-      return contactId;
+      await axios.delete(`/contacts/${id}`);
+      toast.success("The contact was successfully deleted!");
+      return id;
     } catch (error) {
-      toast.error(`Contact is not deleted: ${error.message}`);
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error("Failed to delete contact. Please try again!");
+      return rejectWithValue(error);
     }
   }
 );
-export const updateContact = createAsyncThunk(
-  "contacts/updateContact",
-  async ({ id, number, name }, thunkAPI) => {
+
+export const changeContact = createAsyncThunk(
+  "contacts/changeContact",
+  async ({ id, updatedData }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`/contacts/${id}`, {
-        number,
-        name,
-      });
-      toast.success("Contact was updated", {
-        icon: "Success!",
-        style: { gap: "5px" },
-      });
-      return response.data;
+      // eslint-disable-next-line no-unused-vars
+      const { id: contactId, ...dataToSend } = updatedData;
+      const { data } = await axios.patch(`/contacts/${id}`, dataToSend);
+      toast.success("The contact was successfully changed!");
+      return data;
     } catch (error) {
-      toast.error(`Contact is not updated: ${error.message}`);
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error("Failed to change contact. Please try again!");
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -1,0 +1,10 @@
+.container {
+  min-width: 1440px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../assets/background.jpg);
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}

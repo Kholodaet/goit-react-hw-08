@@ -1,17 +1,15 @@
-.searchContainer h2 {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
-}
-
-.searchInput {
-  max-width: 235px;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.container {
+  border: 1px solid white;
+  border-radius: 7px;
+  max-width: 335px;
+  padding: 10px;
+  margin-top: 15px;
 }
 
 .label {
-  margin-top: 16px;
+  color: grey;
+}
+
+.input {
+  width: 315px;
 }

@@ -1,30 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, logOut, refreshUser, register } from "./operations";
+import {
+  registrationOperation,
+  loginOperation,
+  loginOutOperation,
+  refreshUserOperation,
+} from "./operations";
+
+const initialState = {
+  user: {
+    name: null,
+    email: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: {
-      name: null,
-      email: null,
-    },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-  },
-  extraReducers: (builder) =>
+  initialState,
+  extraReducers: (builder) => {
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+      .addCase(registrationOperation.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(registrationOperation.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+      .addCase(registrationOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(loginOperation.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(loginOperation.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(loginOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(loginOutOperation.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(loginOutOperation.fulfilled, (state) => {
         state.user = {
           name: null,
           email: null,
@@ -32,14 +54,23 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = true;
+      .addCase(loginOutOperation.rejected, (state, { payload }) => {
+        state.error = payload;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+      .addCase(refreshUserOperation.pending, (state) => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(refreshUserOperation.fulfilled, (state, { payload }) => {
+        state.user = payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-      }),
+      })
+      .addCase(refreshUserOperation.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
+      });
+  },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

@@ -1,48 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  fetchContacts,
   addContact,
   deleteContact,
-  fetchContacts,
-  updateContact,
+  changeContact,
 } from "./operations";
-import { logOut } from "../auth/operations";
+import { loginOutOperation } from "../auth/operations";
 
-const contactsSlice = createSlice({
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+  selectedContact: null,
+};
+
+const contactSlice = createSlice({
   name: "contacts",
-  initialState: {
-    items: [],
-    loading: false,
-    error: false,
+  initialState,
+  reducers: {
+    setSelectedContact: (state, action) => {
+      state.selectedContact = action.payload;
+    },
   },
-  extraReducers: (builder) =>
+  extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, (state) => {
-        state.error = false;
         state.loading = true;
+        state.error = null;
       })
-      .addCase(fetchContacts.fulfilled, (state, action) => {
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = payload;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
+      .addCase(fetchContacts.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = payload;
       })
       .addCase(addContact.pending, (state) => {
-        state.error = false;
         state.loading = true;
+        state.error = null;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
+      .addCase(addContact.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.items.push(action.payload);
+        state.items.push(payload);
       })
-      .addCase(addContact.rejected, (state) => {
+      .addCase(addContact.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = true;
+        state.error = payload;
       })
       .addCase(deleteContact.pending, (state) => {
-        state.error = false;
         state.loading = true;
+        state.error = null;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
@@ -50,39 +58,32 @@ const contactsSlice = createSlice({
           (contact) => contact.id !== action.payload
         );
       })
-      .addCase(deleteContact.rejected, (state) => {
+      .addCase(deleteContact.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = true;
+        state.error = payload;
       })
-      .addCase(updateContact.pending, (state) => {
-        state.error = false;
+      .addCase(changeContact.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
-      .addCase(updateContact.fulfilled, (state, action) => {
-        const contactIndex = state.items.findIndex(
-          (item) => item.id === action.payload.id
+      .addCase(changeContact.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.items = state.items.map((contact) =>
+          contact.id === payload.id ? payload : contact
         );
-        state.items[contactIndex] = action.payload;
-        state.error = false;
+        state.selectedContact = null;
+      })
+      .addCase(changeContact.rejected, (state, { payload }) => {
         state.loading = false;
+        state.error = payload; // Зберігаємо лише серіалізоване повідомлення про помилку
       })
-      .addCase(updateContact.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(logOut.pending, (state) => {
-        state.error = false;
-        state.loading = true;
-      })
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(loginOutOperation.fulfilled, (state) => {
         state.items = [];
-        state.error = false;
         state.loading = false;
-      })
-      .addCase(logOut.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      }),
+        state.error = null;
+      });
+  },
 });
 
-export default contactsSlice.reducer;
+export const { setSelectedContact } = contactSlice.actions;
+export const contactsReducer = contactSlice.reducer;

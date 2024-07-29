@@ -1,38 +1,9 @@
-.contactContainer {
+.list {
+  max-width: 1400px;
+  padding-inline-start: 0px;
+  list-style: none;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
   gap: 15px;
-  border: 1px solid grey;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-.contactItem {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.contactIcon {
-  margin-right: 8px;
-}
-
-.listParams {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.contactsList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contactsList li {
-  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
