@@ -10,7 +10,8 @@
 .title {
   font-size: 2rem; /* Зменшено розмір шрифту */
   line-height: 1.5;
-  color: #f1c40f; /* Золотистий колір для заголовка */
+  font-weight: 300;
+  color: #242424;
   margin-bottom: 20px; /* Відступ від заголовка до форми */
   text-align: center; /* Вирівнювання по центру */
 }

@@ -84,7 +84,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(setSelectedContact(null)); // Скидання вибраного контакту при виході з форми
+      dispatch(setSelectedContact(null));
     };
   }, [dispatch]);
 
